@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Link from 'next/link'
-import { Button, Card, Form, Row, Col } from 'react-bootstrap'
+import { Button, Card, Form, Modal, Row, Col } from 'react-bootstrap'
 
 const Home = () => {
     const [topAnimes, setRandomAnimes] = useState([])
@@ -45,10 +45,44 @@ const Home = () => {
                 <Col>
                     <h1 className='text-primary'>Sora</h1>
                     <Link href='/Wen'>My Media List</Link>
-                    <Form>
-
-
-                    </Form>
+                    <div>
+                        <Form onSubmit={e => {
+                            e.preventDefault()
+                        }}>
+                            <Form.Group>
+                                <Form.Label>Title</Form.Label>
+                                <Form.Control
+                                    placeholder='Title'
+                                />
+                                <Form.Label>Author</Form.Label>
+                                <Form.Control 
+                                    placeholder='Author'
+                                />
+                                <Form.Label>Type</Form.Label>
+                                <Form.Control as='select'>
+                                    <option>Anime</option>
+                                    <option>Manga</option>
+                                </Form.Control>
+                                <Form.Label>Rating</Form.Label>
+                                <Form.Control as='select'>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </Form.Control>
+                                <Form.Label>Comment</Form.Label>
+                                <Form.Control as="textarea" rows={3}></Form.Control>
+                            </Form.Group>
+                            <Button block type='submit'>Submit</Button>
+                            <Button block variant='light' type='reset'>Clear</Button>
+                        </Form>
+                    </div>
                 </Col>
                 <Col>
                     <div className='btn-group'>
@@ -59,7 +93,7 @@ const Home = () => {
                         <Card key={anime.id}>
                             <Card.Body>
                                 <Card.Title>{anime.title}</Card.Title>
-                                <Card.Img src={anime.image} className='col-md-2'></Card.Img>
+                                <Card.Img src={anime.image} className='col-md-4'></Card.Img>
                                 <Card.Text>Average MAL Score: {anime.score}</Card.Text>
                                 Type: Anime
                             </Card.Body>
@@ -75,12 +109,12 @@ const Home = () => {
                             <Card key={manga.id}>
                                 <Card.Body>
                                     <Card.Title>{manga.title}</Card.Title>
-                                    <Card.Img src={manga.image} className='col-md-2'></Card.Img>
+                                    <Card.Img src={manga.image} className='col-md-4'></Card.Img>
                                     <Card.Text>Average MAL Score: {manga.score}</Card.Text>
                                     Type: Manga
                                 </Card.Body>
                             </Card>
-                        ))}
+                    ))}
                 </Col>
             </Row>
         </div>
