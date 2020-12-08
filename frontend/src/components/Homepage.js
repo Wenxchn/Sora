@@ -46,7 +46,7 @@ const Home = () => {
     }
 
     const findRandomAnime = async () => {
-        let random = await getRandomInt(50)
+        let random = await getRandomInt(100)
         let res = await fetch(`https://api.jikan.moe/v3/top/anime/${random}/tv`)
         let data = await res.json()
         random = await getRandomInt(50)
@@ -55,8 +55,8 @@ const Home = () => {
     }
 
     const findRandomManga = async () => {
-        let random = await getRandomInt(50)
-        let res = await fetch('https://api.jikan.moe/v3/top/manga/1/manga')
+        let random = await getRandomInt(100)
+        let res = await fetch(`https://api.jikan.moe/v3/top/manga/${random}/manga`)
         let data = await res.json()
         random = await getRandomInt(50)
 
@@ -76,8 +76,7 @@ const Home = () => {
             <div className='ml-2 mr-2'>
                 <Row>
                     <Col>
-                        <h1 className='text-primary'>Sora</h1>
-    
+                        <Link style={{ textDecoration: 'none' }} className='h1' onClick={() => window.location.reload()}>Sora</Link>
                         <div>
                             <Form id='mediaForm' onSubmit={e => {
                                 e.preventDefault()
@@ -143,7 +142,7 @@ const Home = () => {
                             <Button onClick={() => findRandomManga()}>Get Random Manga</Button>
                             <Button onClick={() => clearMangaList()}>Clear Random Manga</Button>
                         </div>
-                        <DropdownButton className='float-right' title=''>
+                        <DropdownButton className='float-right' title='‏‏‎ ‎'>
                             <Dropdown.Item
                                 type='button'
                                 onClick={() => history.push('/myanime')}
@@ -180,8 +179,8 @@ const Home = () => {
                     <Col>
                         <Container>
                             <h1 className='text-primary'>Sora</h1>
-                            <h5>Find random anime and manga.</h5>
-                            <h5>Privately track of them too!</h5>
+                            <h5>Find anime and manga.</h5>
+                            <h5>Privately keep track of them too!</h5>
                         </Container>
                     </Col>
                     <Col>

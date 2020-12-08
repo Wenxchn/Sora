@@ -13,6 +13,7 @@ const Signup = () => {
     const signup = async () => {
         try {
             await axios.post('/user/signup', { username, password })
+            await axios.post('/user/login', { username, password })
             history.push('/')
         } catch (e) {
             console.log(e)
