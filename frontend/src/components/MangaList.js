@@ -10,6 +10,7 @@ const MangaList = () => {
     const [showOn, setShowOn] = useState(false)
     const history = useHistory()
     let entry = 0
+    let id = ''
     
     useEffect(async () => {
         try {
@@ -26,6 +27,15 @@ const MangaList = () => {
             await axios.post('user/logout')
             setUsername('')
             history.push('/')
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const deleteAnime = async () => {
+        try {
+            await axios.post('user/delete', { _id : id })
+            setMyAnime(myAnime => myAnime.filter(anime => anime.id !== id))
         } catch (e) {
             console.log(e)
         }
@@ -97,7 +107,13 @@ const MangaList = () => {
                                     <Card.Text>Author: {anime.author}</Card.Text>
                                     <Card.Text>Rating: {anime.rating}</Card.Text>
                                     <Card.Text>Comment: {anime.comment}</Card.Text>
-                                    <Card.Text>Entry: {entry++}</Card.Text>
+                                    <div className='btn-group'>
+                                        <Button>Edit</Button>
+                                        <Button 
+                                            onClick={() => {id = anime.id; deleteAnime()}}
+                                        >Delete</Button>
+                                    </div>
+                                    <Card.Text className='float-right'>{entry++}</Card.Text>
                                 </Card.Body>
                             </Card>
                         ))}
