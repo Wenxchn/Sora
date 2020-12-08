@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, DropdownButton, Dropdown, Card, Form, Modal, Row, Col, Container } from 'react-bootstrap'
-// import Image from 'react-bootstrap/Image'
+import Image from 'react-bootstrap/Image'
 import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom'
 
 const Home = () => {
@@ -76,7 +76,7 @@ const Home = () => {
             <div className='ml-2 mr-2'>
                 <Row>
                     <Col>
-                        <Link style={{ textDecoration: 'none' }} className='h1' onClick={() => window.location.reload()}>Sora</Link>
+                        <Link style={{ textDecoration: 'none' }} className='h1' onClick={() => window.location.reload()} to='/'>Sora</Link>
                         <div>
                             <Form id='mediaForm' onSubmit={e => {
                                 e.preventDefault()
@@ -201,6 +201,15 @@ const Home = () => {
                                 >Create New Account</Button>
                             </Card.Body>
                         </Card>
+                        
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Image className='col-lg-10 img-responsive' src='https://i.ibb.co/2FPNVKF/Sora-Logo.png'/>
+                    </Col>
+                    <Col>
+                        
                     </Col>
                 </Row>
             </div>
