@@ -9,6 +9,7 @@ const MangaList = () => {
     const [myAnime, setMyAnime] = useState([])
     const [showOn, setShowOn] = useState(false)
     const history = useHistory()
+    let entry = 0
     
     useEffect(async () => {
         try {
@@ -38,7 +39,7 @@ const MangaList = () => {
             for (let i = 0; i < media.length; i++) {
                 if (media[i].type === 'Manga') {
                     setMyAnime(myAnime => 
-                        [...myAnime, { title: media[i].name, author: media[i].author, rating: media[i].rating, comment: media[i].comment, id: myAnime.length }])
+                        [...myAnime, { title: media[i].name, author: media[i].author, rating: media[i].rating, comment: media[i].comment, id: media[i]._id }])
                 }
             }
             setShowOn(true)
@@ -93,10 +94,10 @@ const MangaList = () => {
                             <Card key={anime.id}>
                                 <Card.Body>
                                     <Card.Text>Title: {anime.title}</Card.Text>
-                                    <Card.Text>Author/Director: {anime.author}</Card.Text>
+                                    <Card.Text>Author: {anime.author}</Card.Text>
                                     <Card.Text>Rating: {anime.rating}</Card.Text>
                                     <Card.Text>Comment: {anime.comment}</Card.Text>
-                                    <Card.Text>Entry: {anime.id}</Card.Text>
+                                    <Card.Text>Entry: {entry++}</Card.Text>
                                 </Card.Body>
                             </Card>
                         ))}

@@ -9,6 +9,8 @@ const AnimeList = () => {
     const [myAnime, setMyAnime] = useState([])
     const [showOn, setShowOn] = useState(false)
     const history = useHistory()
+    let entry = 0
+    let id = ''
     
     useEffect(async () => {
         try {
@@ -30,6 +32,15 @@ const AnimeList = () => {
         }
     }
 
+    const deleteAnime = async () => {
+        try {
+            await axios.post('user/delete', { _id : id })
+            setMyAnime(myAnime => myAnime.filter(anime => anime.id !== id))
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     const getAnimeList = async () => {
         try {
             let res = await axios.get(`user/${username}/list`)
@@ -38,7 +49,7 @@ const AnimeList = () => {
             for (let i = 0; i < media.length; i++) {
                 if (media[i].type === 'Anime') {
                     setMyAnime(myAnime => 
-                        [...myAnime, { title: media[i].name, author: media[i].author, rating: media[i].rating, comment: media[i].comment, id: myAnime.length }])
+                        [...myAnime, { title: media[i].name, author: media[i].author, rating: media[i].rating, comment: media[i].comment, id: media[i]._id }])
                 }
             }
             setShowOn(true)
@@ -93,10 +104,16 @@ const AnimeList = () => {
                             <Card key={anime.id}>
                                 <Card.Body>
                                     <Card.Text>Title: {anime.title}</Card.Text>
-                                    <Card.Text>Author/Director: {anime.author}</Card.Text>
+                                    <Card.Text>Studio: {anime.author}</Card.Text>
                                     <Card.Text>Rating: {anime.rating}</Card.Text>
                                     <Card.Text>Comment: {anime.comment}</Card.Text>
-                                    <Card.Text>Entry: {anime.id}</Card.Text>
+                                    <div className='btn-group'>
+                                        <Button>Edit</Button>
+                                        <Button 
+                                            onClick={() => {id = anime.id; deleteAnime()}}
+                                        >Delete</Button>
+                                    </div>
+                                    <Card.Text className='float-right'>{entry++}</Card.Text>
                                 </Card.Body>
                             </Card>
                         ))}

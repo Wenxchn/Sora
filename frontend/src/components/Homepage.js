@@ -90,9 +90,9 @@ const Home = () => {
                                         placeholder='Title'
                                         ref={node => name = node}
                                     />
-                                    <Form.Label>Author</Form.Label>
+                                    <Form.Label>Author/Studio</Form.Label>
                                     <Form.Control 
-                                        placeholder='Author'
+                                        placeholder='Author/Studio'
                                         ref={node => author = node}
                                     />
                                     <Form.Label>Type</Form.Label>
